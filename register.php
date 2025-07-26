@@ -10,32 +10,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama_lengkap = mysqli_real_escape_string($koneksi, $_POST['nama_lengkap']);
     $kelas = mysqli_real_escape_string($koneksi, $_POST['kelas']);
     $uid_rfid = mysqli_real_escape_string($koneksi, $_POST['uid_rfid']);
-    // BARU: Ambil data telegram_chat_id
-    $telegram_chat_id = mysqli_real_escape_string($koneksi, $_POST['telegram_chat_id']);
+    // BARU: Ambil data email_ortu (menggantikan telegram_chat_id)
+    $email_ortu = mysqli_real_escape_string($koneksi, $_POST['email_ortu']);
 
-    // Validasi input tidak boleh kosong (telegram_chat_id boleh kosong)
+    // Validasi input tidak boleh kosong (email_ortu boleh kosong)
     if (!empty($nama_lengkap) && !empty($kelas) && !empty($uid_rfid)) {
-        // DIUBAH: Query untuk memasukkan data siswa baru termasuk telegram_chat_id
-        $sql = "INSERT INTO siswa (nama_lengkap, kelas, uid_rfid, telegram_chat_id) VALUES (?, ?, ?, ?)";
-
-        $stmt = mysqli_prepare($koneksi, $sql);
-
-        if ($stmt) {
-            // DIUBAH: Bind parameter baru (s = string)
-            mysqli_stmt_bind_param($stmt, "ssss", $nama_lengkap, $kelas, $uid_rfid, $telegram_chat_id);
-
-            if (mysqli_stmt_execute($stmt)) {
-                $pesan = "<div class='alert alert-success'>Pendaftaran siswa berhasil!</div>";
-            } else {
-                if (mysqli_errno($koneksi) == 1062) {
-                    $pesan = "<div class='alert alert-danger'>Error: UID RFID sudah terdaftar.</div>";
-                } else {
-                    $pesan = "<div class='alert alert-danger'>Error: " . mysqli_stmt_error($stmt) . "</div>";
-                }
-            }
-            mysqli_stmt_close($stmt);
+        // Validasi format email jika diisi
+        if (!empty($email_ortu) && !filter_var($email_ortu, FILTER_VALIDATE_EMAIL)) {
+            $pesan = "<div class='alert alert-warning'>Format email tidak valid!</div>";
         } else {
-            $pesan = "<div class='alert alert-danger'>Error: Gagal menyiapkan statement.</div>";
+            // DIUBAH: Query untuk memasukkan data siswa baru termasuk email_ortu
+            $sql = "INSERT INTO siswa (nama_lengkap, kelas, uid_rfid, email_ortu) VALUES (?, ?, ?, ?)";
+
+            $stmt = mysqli_prepare($koneksi, $sql);
+
+            if ($stmt) {
+                // DIUBAH: Bind parameter baru (s = string)
+                mysqli_stmt_bind_param($stmt, "ssss", $nama_lengkap, $kelas, $uid_rfid, $email_ortu);
+
+                if (mysqli_stmt_execute($stmt)) {
+                    $pesan = "<div class='alert alert-success'>Pendaftaran siswa berhasil!</div>";
+                } else {
+                    if (mysqli_errno($koneksi) == 1062) {
+                        $pesan = "<div class='alert alert-danger'>Error: UID RFID sudah terdaftar.</div>";
+                    } else {
+                        $pesan = "<div class='alert alert-danger'>Error: " . mysqli_stmt_error($stmt) . "</div>";
+                    }
+                }
+                mysqli_stmt_close($stmt);
+            } else {
+                $pesan = "<div class='alert alert-danger'>Error: Gagal menyiapkan statement.</div>";
+            }
         }
     } else {
         $pesan = "<div class='alert alert-warning'>Nama, Kelas, dan UID RFID harus diisi!</div>";
@@ -131,11 +136,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         class="w-full border-2 border-blue-400 rounded-xl py-3 px-5 text-lg focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-blue-600 bg-blue-50 bg-opacity-80 shadow-inner transition" />
                 </div>
                 <div>
-                    <label for="telegram_chat_id" class="block text-left font-medium text-blue-900 mb-1">Telegram Chat
-                        ID Orang Tua</label>
-                    <input type="text" id="telegram_chat_id" name="telegram_chat_id" placeholder="Contoh: 987654321"
+                    <label for="email_ortu" class="block text-left font-medium text-blue-900 mb-1">Email Orang Tua</label>
+                    <input type="email" id="email_ortu" name="email_ortu" placeholder="contoh@email.com"
                         class="w-full border-2 border-blue-200 rounded-xl py-3 px-5 text-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 bg-blue-50 bg-opacity-80 shadow-inner transition" />
-                    <span class="text-sm text-gray-500">Boleh dikosongkan jika tidak ada.</span>
+                    <span class="text-sm text-gray-500">Boleh dikosongkan jika tidak ada. Email akan digunakan untuk notifikasi absensi.</span>
                 </div>
                 <button type="submit"
                     class="w-full py-3 rounded-xl bg-blue-700 text-white font-bold text-lg shadow hover:bg-blue-800 transition">Daftarkan
