@@ -87,12 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="relative min-h-screen bg-gradient-to-br from-blue-50 to-blue-200 flex flex-col font-sans">
-    <!-- Background Image (optional, jika ingin konsisten dengan index.php) -->
-    <!-- <div class="absolute inset-0 -z-10">
-    <img src="foto-pondok.jpg" alt="Pondok Pesantren Yati" class="w-full h-full object-cover object-center brightness-90" />
-    <div class="absolute inset-0 bg-blue-900 bg-opacity-60"></div>
-  </div> -->
-
     <!-- Navbar -->
     <nav class="bg-blue-800 bg-opacity-80 text-white shadow-lg sticky top-0 z-20 backdrop-blur-md">
         <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
@@ -103,10 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <ul class="flex gap-6 text-lg">
                 <li><a href="index.php" class="hover:text-yellow-300 font-medium transition">Absensi</a></li>
-                <li><a href="register.php" class="hover:text-yellow-300 font-medium transition underline">Registrasi</a>
-                </li>
+                <li><a href="register.php" class="hover:text-yellow-300 font-medium transition underline">Registrasi</a></li>
                 <li><a href="laporan.php" class="hover:text-yellow-300 font-medium transition">Laporan</a></li>
                 <li><a href="dashboard.php" class="hover:text-yellow-300 font-medium transition">Dashboard</a></li>
+                <li><a href="kelola_siswa.php" class="hover:text-yellow-300 font-medium transition">Kelola Siswa</a></li>
             </ul>
         </div>
     </nav>

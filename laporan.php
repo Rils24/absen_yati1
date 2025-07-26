@@ -84,6 +84,8 @@ $result_kelas = mysqli_query($koneksi, $sql_kelas);
                 <li><a href="laporan.php" class="hover:text-yellow-300 font-medium transition underline">Laporan</a>
                 </li>
                 <li><a href="dashboard.php" class="hover:text-yellow-300 font-medium transition">Dashboard</a></li>
+                <li><a href="kelola_siswa.php" class="hover:text-yellow-300 font-medium transition">Kelola Siswa</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -146,7 +148,7 @@ $result_kelas = mysqli_query($koneksi, $sql_kelas);
                     <tbody class="bg-white text-blue-900">
                         <?php if (mysqli_num_rows($result) > 0): ?>
                             <?php $no = 1; ?>
-                            <?php 
+                            <?php
                             // Get attendance settings for status calculation
                             $sql_pengaturan_status = "SELECT waktu_masuk_akhir, waktu_keluar_mulai FROM pengaturan_absensi WHERE id = 1";
                             $result_pengaturan_status = mysqli_query($koneksi, $sql_pengaturan_status);
@@ -176,11 +178,15 @@ $result_kelas = mysqli_query($koneksi, $sql_kelas);
                                             $status = 'Tidak Absen Masuk';
                                         }
                                         ?>
-                                        <span class="<?php 
-                                            if ($status == 'Terlambat') echo 'text-red-600 font-semibold';
-                                            else if ($status == 'Pulang Cepat') echo 'text-orange-600 font-semibold';
-                                            else if ($status == 'Hadir') echo 'text-green-600 font-semibold';
-                                            else echo 'text-gray-600';
+                                        <span class="<?php
+                                        if ($status == 'Terlambat')
+                                            echo 'text-red-600 font-semibold';
+                                        else if ($status == 'Pulang Cepat')
+                                            echo 'text-orange-600 font-semibold';
+                                        else if ($status == 'Hadir')
+                                            echo 'text-green-600 font-semibold';
+                                        else
+                                            echo 'text-gray-600';
                                         ?>">
                                             <?php echo $status; ?>
                                         </span>

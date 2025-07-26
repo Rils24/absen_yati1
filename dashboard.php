@@ -159,8 +159,8 @@ $result_recent_absensi = mysqli_query($koneksi, $sql_recent_absensi);
                 <li><a href="index.php" class="hover:text-yellow-300 font-medium transition">Absensi</a></li>
                 <li><a href="register.php" class="hover:text-yellow-300 font-medium transition">Registrasi</a></li>
                 <li><a href="laporan.php" class="hover:text-yellow-300 font-medium transition">Laporan</a></li>
-                <li><a href="dashboard.php" class="hover:text-yellow-300 font-medium transition underline">Dashboard</a>
-                </li>
+                <li><a href="dashboard.php" class="hover:text-yellow-300 font-medium transition underline">Dashboard</a></li>
+                <li><a href="kelola_siswa.php" class="hover:text-yellow-300 font-medium transition">Kelola Siswa</a></li>
             </ul>
         </div>
     </nav>
