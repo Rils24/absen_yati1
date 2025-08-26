@@ -288,7 +288,7 @@ $result_recent_absensi = mysqli_query($koneksi, $sql_recent_absensi);
         <div class="max-w-7xl mx-auto">
             <!-- Header Section -->
             <div class="text-center mb-12 animate-fadeIn">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Dashboard Admin</h2>
+                <!-- <h2 class="text-4xl font-bold text-gray-800 mb-4">Dashboard Admin</h2> -->
                 <p class="text-lg text-gray-600">Kelola dan monitor sistem absensi dengan mudah</p>
                 <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mt-4 rounded-full"></div>
             </div>
