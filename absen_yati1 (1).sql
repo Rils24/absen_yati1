@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 26, 2025 at 07:37 AM
+-- Generation Time: Jul 27, 2025 at 12:11 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.15
 
@@ -39,17 +39,9 @@ CREATE TABLE `absensi` (
 --
 
 INSERT INTO `absensi` (`id`, `id_siswa`, `waktu_masuk`, `waktu_keluar`) VALUES
-(1, 6, '2025-07-23 16:44:31', NULL),
-(2, 2, '2025-07-23 16:44:38', NULL),
-(3, 1, '2025-07-23 16:44:43', NULL),
-(4, 2, '2025-07-24 09:18:39', NULL),
-(5, 1, '2025-07-24 09:19:12', NULL),
-(6, 6, '2025-07-24 09:19:19', NULL),
-(7, 7, '2025-07-24 09:20:33', NULL),
-(8, 8, '2025-07-25 18:49:52', '2025-07-25 18:49:57'),
-(9, 9, '2025-07-25 18:50:35', '2025-07-25 18:50:56'),
-(10, 10, '2025-07-25 18:56:55', '2025-07-25 18:57:48'),
-(11, 2, '2025-07-26 14:27:37', '2025-07-26 14:28:28');
+(17, 22, '2025-07-27 06:34:38', '2025-07-27 06:49:21'),
+(18, 23, '2025-07-27 06:38:16', '2025-07-27 06:49:56'),
+(19, 24, '2025-07-27 06:47:30', '2025-07-27 06:48:32');
 
 -- --------------------------------------------------------
 
@@ -70,7 +62,7 @@ CREATE TABLE `pengaturan_absensi` (
 --
 
 INSERT INTO `pengaturan_absensi` (`id`, `waktu_masuk_mulai`, `waktu_masuk_akhir`, `waktu_keluar_mulai`, `waktu_keluar_akhir`) VALUES
-(1, '07:00:00', '09:00:00', '12:00:00', '20:00:00');
+(1, '06:00:00', '09:00:00', '06:00:00', '20:00:00');
 
 -- --------------------------------------------------------
 
@@ -83,7 +75,7 @@ CREATE TABLE `siswa` (
   `nama_lengkap` varchar(100) NOT NULL,
   `kelas` varchar(50) NOT NULL,
   `uid_rfid` varchar(50) NOT NULL,
-  `telegram_chat_id` varchar(100) DEFAULT NULL,
+  `email_ortu` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -91,15 +83,10 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nama_lengkap`, `kelas`, `uid_rfid`, `telegram_chat_id`, `created_at`) VALUES
-(1, 'syahril', '7', '0092368391', '215124', '2025-07-23 09:32:43'),
-(2, '4', '555t', '0092411326', '66666', '2025-07-23 09:34:00'),
-(5, '9', '79', '00924113260092346914', '', '2025-07-23 09:40:27'),
-(6, '2412', '214', '0092346914', '', '2025-07-23 09:40:46'),
-(7, '786', '8', '0092358884', '', '2025-07-24 02:20:29'),
-(8, 'vihjh', '9', '0092280586', '', '2025-07-25 11:49:37'),
-(9, 'jnngfchg', '70', '0092254484', '', '2025-07-25 11:50:31'),
-(10, 'bjbl', '18', '0092212364', '', '2025-07-25 11:56:30');
+INSERT INTO `siswa` (`id`, `nama_lengkap`, `kelas`, `uid_rfid`, `email_ortu`, `created_at`) VALUES
+(22, 'muhammad syahril aprialsyah', '8', '0092418999', 'm.syahril10april@gmail.com', '2025-07-26 23:33:59'),
+(23, 'fasad', '8', '0092515270', 'fthrano168500@gmail.com', '2025-07-26 23:38:11'),
+(24, 'syahril', '8', '0092346914', 'fairyrat4@gmail.com', '2025-07-26 23:47:25');
 
 --
 -- Indexes for dumped tables
@@ -133,13 +120,13 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
